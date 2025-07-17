@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     user = User.new(params.permit(:email_address, :password))
     if user.save
       start_new_session_for user
-      redirect_to after_authentication_path
+      redirect_to after_authentication_url
     else
       redirect_to new_user_path, alert: 'Something went wrong. Please try again.'
     end
