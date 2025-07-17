@@ -1,11 +1,11 @@
-class Views::Profile::Index
+class Views::Profile::Index < Phlex::HTML
   attr_reader :user
 
   def initialize(user:)
     @user = user
   end
 
-  def render
-    "<h1>#{user.name}'s Profile</h1>"
+  def view_template
+    h1 { @user.email }
   end
 end
