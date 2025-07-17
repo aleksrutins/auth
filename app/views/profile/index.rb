@@ -6,6 +6,6 @@ class Views::Profile::Index < Views::Base
   end
 
   def view_template
-    h1 { @user.email }
+    h1 { @user.email_address }
   end
 end
