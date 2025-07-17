@@ -12,7 +12,8 @@ class Views::Sessions::New < Views::Base
           Link(href: @continue_client.url) { @continue_client.name }
         } if @continue_client
       }
-      Form(method: 'post', action: session_url, class: 'flex flex-col gap-4') do
+      Form(method: 'post', action: session_url, class: 'flex flex-col gap-4 mb-4') do
+        Alert(variant: :destructive) { flash[:alert] } if flash[:alert]
         FormField do
           Input(type: 'email', name: 'email_address', placeholder: 'Email')
         end
@@ -20,9 +21,11 @@ class Views::Sessions::New < Views::Base
           Input(type: 'password', name: 'password', placeholder: 'Password')
         end
         Button(type: 'submit', class: 'btn btn-primary') { 'Log In' }
+      end
+      CardFooter do
         div(class: 'flex justify-around') do
           Link(href: new_password_url) { 'Forgot Password?' }
-          Link(href: new_account_url) { 'Create Account' }
+          Link(href: new_user_url) { 'Create Account' }
         end
       end
     end
