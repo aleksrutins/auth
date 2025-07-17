@@ -1,4 +1,4 @@
-class Views::Profile::Index < Phlex::HTML
+class Views::Profile::Index < Views::Base
   attr_reader :user
 
   def initialize(user:)
