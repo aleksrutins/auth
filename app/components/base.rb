@@ -5,6 +5,7 @@ class Components::Base < Phlex::HTML
   include Phlex::Rails::Helpers::Routes
   include Phlex::Rails::Helpers::Flash
   include ApplicationHelper
+  include HeroiconsHelper
   include RubyUI
 
   if Rails.env.development?
