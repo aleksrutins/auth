@@ -53,6 +53,8 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 
   gem 'dotenv'
+  gem 'solargraph'
+  gem 'solargraph-rails'
 end
 
 group :development do
@@ -75,3 +77,5 @@ gem "tailwind_merge", "~> 1.3"
 gem "rouge", "~> 4.5"
 
 gem "http", "~> 5.3"
+
+gem "resend", "~> 0.22.0"
