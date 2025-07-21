@@ -16,7 +16,7 @@ class Views::Profile::Index < Views::Base
           end
           Heading(level: 2) { @profile["display_name"] }
         end
-        Text(weight: "muted") { @profile["de scription"] }
+        Text(weight: "muted") { @profile["description"] }
         Form(action: session_url, method: "delete", class: "pl-1") do
           Button(type: "submit", variant: :ghost) do
             raw safe h_arrow_right_end_on_rectangle
