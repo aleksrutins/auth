@@ -2,8 +2,13 @@
 
 module RubyUI
   class Card < Base
+    def initialize(as: :div, **args)
+      super(**args)
+      @tag = as
+    end
+
     def view_template(&)
-      div(**attrs, &)
+      self.send(@tag, **attrs, &)
     end
 
     private

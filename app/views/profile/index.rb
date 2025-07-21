@@ -32,6 +32,11 @@ class Views::Profile::Index < Views::Base
 
       Heading(level: 3) { "Your Apps" }
       div(class: "flex flex-row overflow-auto w-full gap-4") do
+        if Rails.env.development? or @user.verified
+          Card(as: :a, class: "flex flex-col items-center justify-center p-6 gap-2 text-gray-500 border-dashed cursor-pointer", href: new_client_url) do
+            Heading(level: 4) { "Create New" }
+          end
+        end
         Client.where(user_id: @user.id).each { |c| app_card(c) }
       end
     end

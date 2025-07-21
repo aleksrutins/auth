@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 
   def create
     if params[:password] != params[:password_confirmation]
-      redirect_to new_user_path, alert: 'Passwords do not match.'
+      redirect_to new_user_path, alert: "Passwords do not match."
       return
     end
     user = User.new(params.permit(:email_address, :password))
@@ -15,7 +15,7 @@ class UsersController < ApplicationController
       start_new_session_for user
       redirect_to after_authentication_url
     else
-      redirect_to new_user_path, alert: 'Something went wrong. Please try again.'
+      redirect_to new_user_path, alert: "Something went wrong. Please try again."
     end
   end
 end
