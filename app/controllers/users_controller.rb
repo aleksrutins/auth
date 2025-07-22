@@ -18,4 +18,17 @@ class UsersController < ApplicationController
       redirect_to new_user_path, alert: "Something went wrong. Please try again."
     end
   end
+
+  def start_verify
+      # code = VerificationCode.new
+      # if code.save
+
+      render Views::Users::Verify.new
+    # else
+    #  redirect_to root_url, alert: "Something went wrong. Please try again later."
+    # end
+  end
+
+  def verify
+  end
 end

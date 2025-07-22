@@ -15,10 +15,27 @@ class Views::Profile::Index < Views::Base
             AvatarFallback { @user.email_address[0..1].upcase }
           end
           Heading(level: 2) { @profile["display_name"] }
+          if @user.verified
+            div(class: "text-green-500", title: "Verified") { h_shield_check }
+          else
+            div(class: "text-amber-500", title: "Unverified") { h_shield_exclamation }
+          end
         end
         Text(weight: "muted") { @profile["description"] }
+
+        if !@user.verified
+          Alert(variant: :warning) do
+            h_shield_exclamation
+            AlertTitle { "Unverified account" }
+            AlertDescription do
+              Link(href: url_for("users/verify/start"), class: "inline p-0 m-0 text-inherit") { "Verify your account" }
+              plain(" to create apps or use more secure apps.")
+            end
+          end
+        end
+
         Form(action: session_url, method: "delete", class: "pl-1") do
-          Button(type: "submit", variant: :ghost) do
+          Button(type: "submit", variant: :ghost, class: "cursor-pointer") do
             h_arrow_right_end_on_rectangle
             plain "Log Out"
           end
@@ -30,14 +47,16 @@ class Views::Profile::Index < Views::Base
         Client.where(featured: true).each { |c| app_card(c) }
       end
 
-      Heading(level: 3) { "Your Apps" }
-      div(class: "flex flex-row overflow-auto w-full gap-4") do
-        if Rails.env.development? or @user.verified
+      if Rails.env.development? or @user.verified
+        Heading(level: 3) { "Your Apps" }
+
+        div(class: "flex flex-row overflow-auto w-full gap-4") do
           Card(as: :a, class: "flex flex-col items-center justify-center p-6 gap-2 text-gray-500 border-dashed cursor-pointer", href: new_client_url) do
             Heading(level: 4) { "Create New" }
           end
+
+          Client.where(user_id: @user.id).each { |c| app_card(c) }
         end
-        Client.where(user_id: @user.id).each { |c| app_card(c) }
       end
     end
   end

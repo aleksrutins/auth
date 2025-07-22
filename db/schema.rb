@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_21_014520) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_21_224011) do
   create_table "clients", id: false, force: :cascade do |t|
     t.string "id", null: false
     t.integer "user_id", null: false
@@ -42,9 +42,19 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_21_014520) do
     t.datetime "updated_at", null: false
     t.json "profile"
     t.boolean "verified"
+    t.boolean "is_admin", default: false
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
+  end
+
+  create_table "verification_codes", force: :cascade do |t|
+    t.integer "users_id", null: false
+    t.string "code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["users_id"], name: "index_verification_codes_on_users_id"
   end
 
   add_foreign_key "clients", "users"
   add_foreign_key "sessions", "users"
+  add_foreign_key "verification_codes", "users", column: "users_id"
 end
