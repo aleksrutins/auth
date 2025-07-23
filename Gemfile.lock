@@ -306,7 +306,7 @@ GEM
     reverse_markdown (3.0.0)
       nokogiri
     rexml (3.4.1)
-    rouge (4.5.2)
+    rouge (4.6.0)
     rubocop (1.78.0)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
@@ -478,7 +478,7 @@ DEPENDENCIES
   rails (~> 8.0.2)
   rails_semantic_logger (~> 4.17)
   resend (~> 0.22.0)
-  rouge (~> 4.5)
+  rouge (~> 4.6)
   rubocop-rails-omakase
   ruby_ui (~> 1.0)
   selenium-webdriver
