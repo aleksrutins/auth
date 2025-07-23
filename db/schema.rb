@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_21_224011) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_23_021727) do
   create_table "clients", id: false, force: :cascade do |t|
     t.string "id", null: false
     t.integer "user_id", null: false
@@ -23,6 +23,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_21_224011) do
     t.boolean "vetted", default: false
     t.boolean "featured", default: false
     t.string "description"
+    t.index ["id"], name: "index_clients_on_id", unique: true
     t.index ["user_id"], name: "index_clients_on_user_id"
   end
 

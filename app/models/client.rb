@@ -1,4 +1,5 @@
 class Client < ApplicationRecord
+  self.primary_key = :id
   has_secure_token :client_secret
   before_create :generate_id
 

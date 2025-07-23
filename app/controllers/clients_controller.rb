@@ -11,4 +11,8 @@ class ClientsController < ApplicationController
       redirect_to new_client_path, alert: "Something went wrong."
     end
   end
+
+  def show
+    render Views::Clients::Show.new(Client.find(params[:id]))
+  end
 end
