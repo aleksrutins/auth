@@ -81,3 +81,5 @@ gem "http", "~> 5.3"
 gem "resend", "~> 0.22.0"
 
 gem "pg", "~> 1.5"
+
+gem "rails_semantic_logger", "~> 4.17"

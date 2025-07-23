@@ -23,5 +23,15 @@ module Auth
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    # Setup structured logging
+    config.semantic_logger.application = "auth"
+    config.semantic_logger.environment = ENV["STACK_NAME"] || Rails.env
+    config.log_level = ENV["LOG_LEVEL"] || :info
+
+    # Switch to JSON Logging output to stdout when running in prod
+    if ENV["LOG_TO_CONSOLE"] || ENV["KUBERNETES_SERVICE_HOST"] || ENV["RAILWAY_PUBLIC_DOMAIN"]
+      config.rails_semantic_logger.add_file_appender = false
+      config.semantic_logger.add_appender(io: $stdout, formatter: :json)
+    end
   end
 end
