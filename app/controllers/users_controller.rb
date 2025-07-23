@@ -20,15 +20,20 @@ class UsersController < ApplicationController
   end
 
   def start_verify
-      # code = VerificationCode.new
-      # if code.save
-
+    code = VerificationCode.new(user_id: Current.user.id)
+    if code.save
+      VerificationMailer.verify(code).deliver_later
       render Views::Users::Verify.new
-    # else
-    #  redirect_to root_url, alert: "Something went wrong. Please try again later."
-    # end
+    else
+      print code.users_id, code.code
+      redirect_to root_url, alert: "Something went wrong. Please try again later."
+    end
   end
 
   def verify
+    code = VerificationCode.where(code: params[:code])
+    code.take.user.update(verified: true)
+    code.destroy_all
+    redirect_to root_url
   end
 end

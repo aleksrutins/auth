@@ -28,7 +28,7 @@ class Views::Profile::Index < Views::Base
             h_shield_exclamation
             AlertTitle { "Unverified account" }
             AlertDescription do
-              Link(href: url_for("users/verify/start"), class: "inline p-0 m-0 text-inherit") { "Verify your account" }
+              Link(href: url_for("/users/verify/start"), class: "inline p-0 m-0 text-inherit") { "Verify your account" }
               plain(" to create apps or use more secure apps.")
             end
           end
