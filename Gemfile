@@ -79,3 +79,5 @@ gem "rouge", "~> 4.5"
 gem "http", "~> 5.3"
 
 gem "resend", "~> 0.22.0"
+
+gem "pg", "~> 1.5"
