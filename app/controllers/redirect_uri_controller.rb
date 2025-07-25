@@ -1,0 +1,2 @@
+class RedirectUriController < ApplicationController
+end

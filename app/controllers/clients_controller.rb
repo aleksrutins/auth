@@ -15,4 +15,13 @@ class ClientsController < ApplicationController
   def show
     render Views::Clients::Show.new(Client.find(params[:id]))
   end
+
+  def edit
+    client = Client.find(params[:id])
+    if client.user_id == Current.user.id
+      render Views::Clients::Edit.new(client)
+    else
+      redirect_to client_path(client.id), alert: "Kwaheri rafiki!" # thanks osticket
+    end
+  end
 end

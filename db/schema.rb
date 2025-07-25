@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_23_021727) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_25_012921) do
   create_table "clients", id: false, force: :cascade do |t|
     t.string "id", null: false
     t.integer "user_id", null: false
@@ -25,6 +25,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_23_021727) do
     t.string "description"
     t.index ["id"], name: "index_clients_on_id", unique: true
     t.index ["user_id"], name: "index_clients_on_user_id"
+  end
+
+  create_table "redirect_uris", force: :cascade do |t|
+    t.integer "client_id", null: false
+    t.string "uri"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_redirect_uris_on_client_id"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -56,6 +64,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_23_021727) do
   end
 
   add_foreign_key "clients", "users"
+  add_foreign_key "redirect_uris", "clients"
   add_foreign_key "sessions", "users"
   add_foreign_key "verification_codes", "users"
 end

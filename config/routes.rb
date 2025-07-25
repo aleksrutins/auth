@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resource :session
   resources :passwords, param: :token
   resources :users
+  resources :redirect_uris
   get "/verify/start" => "users#start_verify"
   get "/verify" => "users#verify"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
