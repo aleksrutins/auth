@@ -56,15 +56,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_25_012921) do
   end
 
   create_table "verification_codes", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.integer "users_id", null: false
     t.string "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_verification_codes_on_user_id"
+    t.index ["users_id"], name: "index_verification_codes_on_users_id"
   end
 
   add_foreign_key "clients", "users"
   add_foreign_key "redirect_uris", "clients"
   add_foreign_key "sessions", "users"
-  add_foreign_key "verification_codes", "users"
+  add_foreign_key "verification_codes", "users", column: "users_id"
 end
